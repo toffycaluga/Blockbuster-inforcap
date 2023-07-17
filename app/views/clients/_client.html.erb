@@ -1,19 +1,46 @@
-<div id="<%= dom_id client %>"class="text-white">
+
+
+<% if current_page?(clients_path) %>
+  
+  <div id="<%= dom_id client %>"class="text-white">
   <tr>
-    <th scope="row"><%= client.id %></th>
-    <td><%= client.name %></td>
+    <th scope="row "><%= client.id %></th>
+    <td class="text-white"><%= client.name  %></td>
     <td><%= client.age %></td>
-    <td><%= client.movies.last %></td>
+    <td class="text-white"><%= client.movies.last %></td>
     
     <td>
-      <%= link_to "", client ,class:"fa-solid fa-eye bg-info text-white p-2 border-info rounded-circle ",data:{bs_toggle:"tooltip", bs_placement:"bottom", bs_title:"Editar cliente"}%>
+      <%= link_to "", client ,class:"fa-solid fa-eye bg-info text-white p-2 border-info rounded-circle ",data:{bs_toggle:"tooltip", bs_placement:"bottom", bs_title:"Ver cliente"}%>
       </td>
     <td>
-      <%= link_to "", edit_client_path(client) ,class:"fa-solid fa-pen-to-square bg-warning text-white p-2 border-warning rounded-circle" %>
+      <%= link_to "", edit_client_path(client) ,class:"fa-solid fa-pen-to-square bg-warning text-white p-2 border-warning rounded-circle" ,data:{bs_toggle:"tooltip", bs_placement:"bottom", bs_title:"Editar cliente"}%>
     </td>
 
     <td>
-      <%= button_to "", @client, method: :delete,class:"fa-solid fa-trash bg-danger text-white p-2 border-danger rounded-circle" %>
+      <%= button_to "", client, method: :delete,class:"fa-solid fa-trash bg-danger text-white p-2 border-danger rounded-circle" ,data:{bs_toggle:"tooltip", bs_placement:"bottom", bs_title:"Eliminar cliente"}%>
     </td>
   </tr>
 </div>
+<%else%>
+<div id="<%= dom_id client %>"class="text-white">
+  <p>Client</p>
+  <p>
+
+    <strong scope="row "><%= client.id %></strong>
+    <span class="text-white"><%= client.name  %></span>
+    <%= client.age %>
+  </p>
+  <p>Movies</p>
+  
+    <p class="text-white"><%= client.movies.last %></p>
+  
+    <div class="container">
+      <div class="btn-group" role="group" aria-label="Basic example">
+      
+      <%= link_to "", edit_client_path(client) ,class:"fa-solid fa-pen-to-square bg-warning text-white p-2 border-warning rounded-circle" ,data:{bs_toggle:"tooltip", bs_placement:"bottom", bs_title:"Editar cliente"}%>
+  
+      <%= button_to "", client, method: :delete,class:"fa-solid fa-trash bg-danger text-white p-2 border-danger rounded-circle",data:{bs_toggle:"tooltip", bs_placement:"bottom", bs_title:"Eliminar cliente"} %>
+  
+      </div>
+
+<%end%>

@@ -50,11 +50,22 @@ class ClientsController < ApplicationController
   # DELETE /clients/1 or /clients/1.json
   def destroy
     @client.destroy
-
-    respond_to do |format|
-      format.html { redirect_to clients_url, notice: "Client was successfully destroyed." }
-      format.json { head :no_content }
+    rescue => e
+      @error = e
+    
+    puts @error
+    if @error 
+      respond_to do |format|
+        format.html { redirect_to clients_url, alert: "Customer must return the film in order to be removed"}
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to clients_url, notice: "Client was successfully destroyed." }
+        format.json { head :no_content }
+      end
     end
+    puts @error
   end
 
   private
