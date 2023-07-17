@@ -1,11 +1,19 @@
-<div id="<%= dom_id client %>">
+<div id="<%= dom_id client %>"class="text-white">
   <tr>
     <th scope="row"><%= client.id %></th>
     <td><%= client.name %></td>
     <td><%= client.age %></td>
     <td><%= client.movies.last %></td>
-    <td><%= link_to "Show this client", client %></td>
-    <td><%= link_to "Edit this client", edit_client_path(client) %></td>
-    <td><%= button_to "Destroy this client", @client, method: :delete %></td>
+    
+    <td>
+      <%= link_to "", client ,class:"fa-solid fa-eye bg-info text-white p-2 border-info rounded-circle ",data:{bs_toggle:"tooltip", bs_placement:"bottom", bs_title:"Editar cliente"}%>
+      </td>
+    <td>
+      <%= link_to "", edit_client_path(client) ,class:"fa-solid fa-pen-to-square bg-warning text-white p-2 border-warning rounded-circle" %>
+    </td>
+
+    <td>
+      <%= button_to "", @client, method: :delete,class:"fa-solid fa-trash bg-danger text-white p-2 border-danger rounded-circle" %>
+    </td>
   </tr>
 </div>
